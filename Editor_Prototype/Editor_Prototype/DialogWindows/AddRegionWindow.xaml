@@ -1,0 +1,155 @@
+﻿<Window x:Class="Editor_Prototype.DialogWindows.AddRegionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Editor_Prototype"
+        Title="Nowy region" Height="300" Width="300">
+    <Window.Resources>
+        
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Margin="4"
+            FontSize="15"
+            Text="Zdefiniuj rozmiar i położenie regionu" />
+
+        <TextBlock
+            Grid.Row="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="X: " />
+
+        <TextBlock
+            Grid.Row="3"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="Y: " />
+
+        <TextBlock
+            Grid.Row="4"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="Szerokość: " />
+
+        <TextBlock
+            Grid.Row="5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="Wysokość: " />
+
+        <TextBox
+            x:Name="txtBoxPosX"
+            Grid.Row="2"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Margin="20,4,20,4" />
+        
+        <TextBox
+            x:Name="txtBoxosY"
+            Grid.Row="3"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Margin="20,4,20,4" />
+        
+        <TextBox
+            x:Name="txtBoxWidth"
+            Grid.Row="4"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Margin="20,4,20,4" />
+        
+        <TextBox
+            x:Name="txtBoxHeight"
+            Grid.Row="5"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Margin="20,4,20,4" />
+
+        <TextBlock
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="Id: " />
+
+        <TextBox
+            x:Name="txtBoxId"
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Margin="20,4,20,4" />
+        
+        <!--TextBlock
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="4"
+            Text="Region: " />
+        <ComboBox
+            x:Name="cmbBoxAddRecion"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="4"
+            Height="40"
+            VerticalContentAlignment="Center"
+            Padding="10"
+            IsSynchronizedWithCurrentItem="True" /-->
+        
+        <StackPanel
+            Grid.Row="9"
+            Grid.Column="1"
+            Margin="4"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            
+            <Button
+                Content="Anuluj"
+                IsCancel="True"
+                Width="50"
+                Margin="4" />
+            <Button
+                Content="Zapisz"
+                Width="50"
+                Margin="4"
+                Click="Save_Clicked"/>
+            <Button
+                Content="Dodaj"
+                IsEnabled="{Binding CanAddRegionsToDocument}"
+                Click="Ok_Clicked"
+                IsDefault="True"
+                Width="50"
+                Margin="4" />
+                
+        </StackPanel>
+        
+    </Grid>
+</Window>

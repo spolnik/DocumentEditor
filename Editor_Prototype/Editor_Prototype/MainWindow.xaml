@@ -1,0 +1,174 @@
+﻿<Window x:Class="Editor_Prototype.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpg="clr-namespace:WPG;assembly=WPG"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:Util="clr-namespace:Editor_Prototype.Util"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        Title="EPUAP Document Editor V 0.0.0.1" Height="600" Width="1200">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="4" />
+            <!--Setter Property="HorizontalAlignment" Value="Stretch" /-->
+            <Setter Property="Width" Value="200" />
+        </Style>
+        
+        <VisualBrush x:Key="PreviewBrush" Visual="{Binding ElementName=documentContainer, Path=Content}" />
+
+        <ObjectDataProvider
+        MethodName="GetValues"
+        ObjectType="{x:Type System:Enum}"
+        x:Key="EditorMode">
+
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Util:DocumentEditorMode" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ListView x:Name="PatternModeOptions" x:Key="PatternCreation"
+                        HorizontalAlignment="Center">
+
+            <Button
+                Content="Nowy Wzorzec Dokumentu"
+                Click="NewDocumentPattern_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+
+            <Button
+                Content="Otwórz Wzorzec Dokumentu"
+                Click="OpenDocumentPattern_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+            
+            <Button
+                Content="Zapisz Wzorzec Dokumentu"
+                Click="SaveDocumentPattern_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+            
+            <Button
+                Content="Definiuj Nowy Region"
+                Click="AddRegion_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+
+            <!--Button
+                Content="Zapisz wzorzec"
+                Style="{StaticResource MenuButtonStyle}" /-->
+
+            <Button
+                Content="Wczytaj Istniejący Region"
+                IsEnabled="{Binding CanAddRegionsToDocument}"
+                Click="AddExistingRegion_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+        </ListView>
+        <ListView x:Name="EditionModeOptions" x:Key="DocumentEdition"
+                        HorizontalAlignment="Center">
+            
+            <Button
+                Content="Nowy Dokument"
+                Click="NewDocument_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+
+            <Button
+                Content="Wczytaj Dokument"
+                Click="OpenDocument_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+            
+            <Button
+                Content="Zapisz Dokument"
+                Click="SaveDocument_Click"
+                Style="{StaticResource MenuButtonStyle}" />
+
+        </ListView>
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Border
+                Width="240">
+                
+                <StackPanel>
+                    <ComboBox
+                        SelectionChanged="EditionModeChanged"
+                        ItemsSource="{Binding Source={StaticResource EditorMode}}"
+                        IsSynchronizedWithCurrentItem="True"
+                        x:Name="EditorModeCmbBx"
+                        Margin="10" />
+                    
+                    <ContentControl
+                        x:Name="Menu"
+                        Margin="10" />
+                    
+                </StackPanel>
+            </Border>
+
+            <Border
+                Grid.Row="1"
+                Width="240">
+                <wpg:PropertyGrid
+                    x:Name="propGrid"          
+                    Margin="4"/>
+                
+            </Border>
+
+        </Grid>
+
+        <Border
+            Grid.Column="1">
+            
+            <ContentControl
+                x:Name="documentContainer"
+                Margin="4"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+            
+            <!--<Canvas
+                x:Name="page"
+                Background="WhiteSmoke"
+                Margin="4"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />-->
+            
+        </Border>
+        
+        <Border
+            Grid.Column="2">
+            <StackPanel>
+                <TextBlock
+                    Text="Document preview"
+                    FontFamily="Verdana"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="4" />
+                <Rectangle
+                    Fill="{StaticResource PreviewBrush}"
+                    Stretch="Fill"
+                    Margin="4"
+                    VerticalAlignment="Top"
+                    Width="200"
+                    Height="300" />
+            </StackPanel>
+        </Border>
+        
+        
+        
+    </Grid>
+</Window>

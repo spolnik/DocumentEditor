@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://documentservice.agh.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://documentservice.agh.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://documentservice.agh.org/">
+      <s:element name="CreateDocumentPattern">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateDocumentPatternResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDocumentPatternResult" type="tns:DocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentPattern">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PageWidth" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageHeight" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contents" type="tns:ArrayOfContentPattern" />
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContentPattern">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContentPattern" nillable="true" type="tns:ContentPattern" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContentPattern">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="X" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Y" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ClearAllDocumentPatterns">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearAllDocumentPatternsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocumentPattern">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentPatternId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentPatternResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentPatternResult" type="tns:DocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentPattern">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentPattern" type="tns:DocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentPatternResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDocumentPatterns">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDocumentPatternsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDocumentPatternsResult" type="tns:ArrayOfDocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDocumentPattern">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentPattern" nillable="true" type="tns:DocumentPattern" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddContentToDocumentPattern">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docPattern" type="tns:DocumentPattern" />
+            <s:element minOccurs="0" maxOccurs="1" name="contentPattern" type="tns:ContentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddContentToDocumentPatternResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddContentToDocumentPatternResult" type="tns:DocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateContentPattern">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateContentPatternResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateContentPatternResult" type="tns:ContentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearAllContentPattenrs">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearAllContentPattenrsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetContentPattern">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentPatternResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentPatternResult" type="tns:ContentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveContentPattern">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contentPattern" type="tns:ContentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveContentPatternResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllContentPatterns">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllContentPatternsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllContentPatternsResult" type="tns:ArrayOfContentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocument">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDocumentResult" type="tns:Document" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Document">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentPatternId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentData" type="tns:ArrayOfDocumentData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentData" nillable="true" type="tns:DocumentData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ClearAllDocuments">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearAllDocumentsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SaveDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="tns:Document" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDocuments">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDocumentsResult" type="tns:ArrayOfDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddDocumentData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="tns:Document" />
+            <s:element minOccurs="0" maxOccurs="1" name="contentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocumentDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddDocumentDataResult" type="tns:Document" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="tns:Document" />
+            <s:element minOccurs="0" maxOccurs="1" name="contentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearDocumentData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="tns:Document" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearDocumentDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InitDocumentContentsData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="tns:Document" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentPattern" type="tns:DocumentPattern" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitDocumentContentsDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InitDocumentContentsDataResult" type="tns:Document" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateDocumentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDocumentPattern" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDocumentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllDocumentPatternsSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearAllDocumentPatterns" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllDocumentPatternsSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearAllDocumentPatternsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentPattern" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocumentPattern" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDocumentPatternsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDocumentPatterns" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDocumentPatternsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDocumentPatternsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddContentToDocumentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:AddContentToDocumentPattern" />
+  </wsdl:message>
+  <wsdl:message name="AddContentToDocumentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:AddContentToDocumentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateContentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateContentPattern" />
+  </wsdl:message>
+  <wsdl:message name="CreateContentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateContentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllContentPattenrsSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearAllContentPattenrs" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllContentPattenrsSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearAllContentPattenrsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentPattern" />
+  </wsdl:message>
+  <wsdl:message name="GetContentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveContentPatternSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveContentPattern" />
+  </wsdl:message>
+  <wsdl:message name="SaveContentPatternSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveContentPatternResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentPatternsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllContentPatterns" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentPatternsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllContentPatternsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDocument" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearAllDocuments" />
+  </wsdl:message>
+  <wsdl:message name="ClearAllDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearAllDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocument" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDocuments" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentDataSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDocumentData" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentDataSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDocumentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentData" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearDocumentDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearDocumentData" />
+  </wsdl:message>
+  <wsdl:message name="ClearDocumentDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearDocumentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitDocumentContentsDataSoapIn">
+    <wsdl:part name="parameters" element="tns:InitDocumentContentsData" />
+  </wsdl:message>
+  <wsdl:message name="InitDocumentContentsDataSoapOut">
+    <wsdl:part name="parameters" element="tns:InitDocumentContentsDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentEditorServiceSoap">
+    <wsdl:operation name="CreateDocumentPattern">
+      <wsdl:input message="tns:CreateDocumentPatternSoapIn" />
+      <wsdl:output message="tns:CreateDocumentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocumentPatterns">
+      <wsdl:input message="tns:ClearAllDocumentPatternsSoapIn" />
+      <wsdl:output message="tns:ClearAllDocumentPatternsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPattern">
+      <wsdl:input message="tns:GetDocumentPatternSoapIn" />
+      <wsdl:output message="tns:GetDocumentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPattern">
+      <wsdl:input message="tns:SaveDocumentPatternSoapIn" />
+      <wsdl:output message="tns:SaveDocumentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocumentPatterns">
+      <wsdl:input message="tns:GetAllDocumentPatternsSoapIn" />
+      <wsdl:output message="tns:GetAllDocumentPatternsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddContentToDocumentPattern">
+      <wsdl:input message="tns:AddContentToDocumentPatternSoapIn" />
+      <wsdl:output message="tns:AddContentToDocumentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateContentPattern">
+      <wsdl:input message="tns:CreateContentPatternSoapIn" />
+      <wsdl:output message="tns:CreateContentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllContentPattenrs">
+      <wsdl:input message="tns:ClearAllContentPattenrsSoapIn" />
+      <wsdl:output message="tns:ClearAllContentPattenrsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPattern">
+      <wsdl:input message="tns:GetContentPatternSoapIn" />
+      <wsdl:output message="tns:GetContentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveContentPattern">
+      <wsdl:input message="tns:SaveContentPatternSoapIn" />
+      <wsdl:output message="tns:SaveContentPatternSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentPatterns">
+      <wsdl:input message="tns:GetAllContentPatternsSoapIn" />
+      <wsdl:output message="tns:GetAllContentPatternsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocument">
+      <wsdl:input message="tns:CreateDocumentSoapIn" />
+      <wsdl:output message="tns:CreateDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocuments">
+      <wsdl:input message="tns:ClearAllDocumentsSoapIn" />
+      <wsdl:output message="tns:ClearAllDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:input message="tns:GetDocumentSoapIn" />
+      <wsdl:output message="tns:GetDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <wsdl:input message="tns:SaveDocumentSoapIn" />
+      <wsdl:output message="tns:SaveDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocuments">
+      <wsdl:input message="tns:GetAllDocumentsSoapIn" />
+      <wsdl:output message="tns:GetAllDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentData">
+      <wsdl:input message="tns:AddDocumentDataSoapIn" />
+      <wsdl:output message="tns:AddDocumentDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentData">
+      <wsdl:input message="tns:GetDocumentDataSoapIn" />
+      <wsdl:output message="tns:GetDocumentDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearDocumentData">
+      <wsdl:input message="tns:ClearDocumentDataSoapIn" />
+      <wsdl:output message="tns:ClearDocumentDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitDocumentContentsData">
+      <wsdl:input message="tns:InitDocumentContentsDataSoapIn" />
+      <wsdl:output message="tns:InitDocumentContentsDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentEditorServiceSoap" type="tns:DocumentEditorServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDocumentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/CreateDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocumentPatterns">
+      <soap:operation soapAction="http://documentservice.agh.org/ClearAllDocumentPatterns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/GetDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/SaveDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocumentPatterns">
+      <soap:operation soapAction="http://documentservice.agh.org/GetAllDocumentPatterns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddContentToDocumentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/AddContentToDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/CreateContentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllContentPattenrs">
+      <soap:operation soapAction="http://documentservice.agh.org/ClearAllContentPattenrs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/GetContentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveContentPattern">
+      <soap:operation soapAction="http://documentservice.agh.org/SaveContentPattern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentPatterns">
+      <soap:operation soapAction="http://documentservice.agh.org/GetAllContentPatterns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocument">
+      <soap:operation soapAction="http://documentservice.agh.org/CreateDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocuments">
+      <soap:operation soapAction="http://documentservice.agh.org/ClearAllDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap:operation soapAction="http://documentservice.agh.org/GetDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <soap:operation soapAction="http://documentservice.agh.org/SaveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocuments">
+      <soap:operation soapAction="http://documentservice.agh.org/GetAllDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentData">
+      <soap:operation soapAction="http://documentservice.agh.org/AddDocumentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentData">
+      <soap:operation soapAction="http://documentservice.agh.org/GetDocumentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearDocumentData">
+      <soap:operation soapAction="http://documentservice.agh.org/ClearDocumentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitDocumentContentsData">
+      <soap:operation soapAction="http://documentservice.agh.org/InitDocumentContentsData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DocumentEditorServiceSoap12" type="tns:DocumentEditorServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDocumentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/CreateDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocumentPatterns">
+      <soap12:operation soapAction="http://documentservice.agh.org/ClearAllDocumentPatterns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/SaveDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocumentPatterns">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetAllDocumentPatterns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddContentToDocumentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/AddContentToDocumentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/CreateContentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllContentPattenrs">
+      <soap12:operation soapAction="http://documentservice.agh.org/ClearAllContentPattenrs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetContentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveContentPattern">
+      <soap12:operation soapAction="http://documentservice.agh.org/SaveContentPattern" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentPatterns">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetAllContentPatterns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocument">
+      <soap12:operation soapAction="http://documentservice.agh.org/CreateDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAllDocuments">
+      <soap12:operation soapAction="http://documentservice.agh.org/ClearAllDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <soap12:operation soapAction="http://documentservice.agh.org/SaveDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDocuments">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetAllDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentData">
+      <soap12:operation soapAction="http://documentservice.agh.org/AddDocumentData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentData">
+      <soap12:operation soapAction="http://documentservice.agh.org/GetDocumentData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearDocumentData">
+      <soap12:operation soapAction="http://documentservice.agh.org/ClearDocumentData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitDocumentContentsData">
+      <soap12:operation soapAction="http://documentservice.agh.org/InitDocumentContentsData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentEditorService">
+    <wsdl:port name="DocumentEditorServiceSoap" binding="tns:DocumentEditorServiceSoap">
+      <soap:address location="http://localhost/DocumentEditorWebService/DocumentEditorService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DocumentEditorServiceSoap12" binding="tns:DocumentEditorServiceSoap12">
+      <soap12:address location="http://localhost/DocumentEditorWebService/DocumentEditorService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
